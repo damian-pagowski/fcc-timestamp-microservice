@@ -1,18 +1,18 @@
-## Description
+# Description
 Timestamp Microservice
-## Running local
+# Running local
 
-# .env file
+## .env file
 create .env file in project root directory.
 In .env file specify port number. For example:
 PORT=3000
 
-# installing project
+## installing project
 npm i
 npm start
 
 
-## Example Usage
+# Example Usage
 
 GET /api/timestamp/2019-10-8
 GET /api/timestamp/1570535473672
