@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>Timestamp Microservice</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron mt-5">
+        <h1 class="display-4 text-center mb-4">Timestamp Microservice</h1>
+
+        <p class="lead">
+          GET /api/timestamp/:date_string
+        </p>
+        <form method="GET" action="/api/timestamp/">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="timestamp"
+              aria-describedby="emailHelp"
+              placeholder="Enter timestamp or datestring here"
+              name="timestamp"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div class="form-group mt-2">
+          <textarea class="form-control" rows="10" id="response"></textarea>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.forms[0].onsubmit = function(event) {
+        event.preventDefault();
+        let timestamp = document.getElementById('timestamp').value
+        const configObj = {
+          method: event.target.method,
+        };
+        let url = event.target.action + timestamp;
+        fetch(url, configObj)
+          .then(resp => resp.json())
+          .then(
+            r => (document.getElementById("response").value = JSON.stringify(r))
+          );
+      };
+    </script>
+  </body>
+</html>
